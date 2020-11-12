@@ -10,7 +10,7 @@ class HomePageTop extends React.Component {
         super(props);
 
         this.state ={
-            login:true,
+            login:false,
         };
         
     }
@@ -21,9 +21,9 @@ class HomePageTop extends React.Component {
     render() {
         return( 
           <div>
-              <h2>TOP</h2>
+              <h2>This Is PetChu!!</h2>
               <Link to="login">
-                <button onClick={ this.moveToLogin}>버튼이에요</button>
+                <button onClick={ this.moveToLogin}>To Sing In</button>
               </Link>
               <Route path="/login" component={LoginPage}></Route>
           </div>
