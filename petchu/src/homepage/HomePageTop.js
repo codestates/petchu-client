@@ -6,6 +6,8 @@ import SignUp from "./SignUp";
 
 axios.defaults.withCredentials = true;
 
+
+//커밋좀 하자 
 class HomePageTop extends React.Component {
     constructor(props) {
         super(props);
