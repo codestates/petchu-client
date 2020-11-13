@@ -2,7 +2,12 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
 import logo from '../images/logo.png';
+import ContainedButtons from "./ContainedButtons";
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
 axios.defaults.withCredentials = true;
+//<button type='submit' onClick={this.handleSignin}>Sing In</button>
 
 class LoginPage extends React.Component {
     constructor(props){
@@ -12,10 +17,12 @@ class LoginPage extends React.Component {
             email:"",
             password:"",
             errorMessage:"",
+            
         };
     this.handleInputValue = this.handleInputValue.bind(this);
     this.handleSignin = this.handleSignin.bind(this);
     }
+    
     handleInputValue = (key) => (e) => 
         {
         this.setState({ [key]: e.target.value });
@@ -45,12 +52,13 @@ class LoginPage extends React.Component {
     render() {
         return(
             <div>
+                
                 <div>
                 <img className="logo" src={logo} width="13" height="14" alt="띠용"></img>
                 </div>
-
                 <center>
-                    <h1>Sing In!</h1>
+                    
+                    <h1>Sign In!</h1>
                     <form onSubmit={(e) => e.preventDefault()}>
                         <div>
                         <label>Email:    </label> <input type="email" onChange={this.handleInputValue("email")}></input>
@@ -58,7 +66,7 @@ class LoginPage extends React.Component {
                         <label>password: </label> <input type="password" onChange={this.handleInputValue("email")}></input>
                         </div>
                         <div>
-                            <button type='submit' onClick={this.handleSignin}>Sing In</button>
+                        <Button variant="outlined" color="secondary" type='submit' onClick={this.handleSignin}>Sign in</Button>
                         </div>
                         <div className="alert-box">{this.state.errorMessage}</div>
                     </form>
@@ -69,12 +77,13 @@ class LoginPage extends React.Component {
                                 소셜 로그인 예정
                             </div>
                             <div>
-                                <button>
-                                    <Link to='/signup'>회원가입</Link>
-                                </button>           
+                            <Button variant="contained" color="primary" disableElevation>
+                                <Link to='/signup'>회원가입</Link>
+                            </Button>  
                             </div>
                     </div>
                 </center>
+                
             </div>
         )
     }
