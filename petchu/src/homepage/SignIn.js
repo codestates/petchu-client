@@ -2,14 +2,14 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
 import logo from '../images/logo.png';
-import ContainedButtons from "./ContainedButtons";
-import { makeStyles } from '@material-ui/core/styles';
+//import ContainedButtons from "./ContainedButtons";
+//import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 axios.defaults.withCredentials = true;
 //<button type='submit' onClick={this.handleSignin}>Sing In</button>
 
-class LoginPage extends React.Component {
+class SignIn extends React.Component {
     constructor(props){
         super(props);
         
@@ -40,7 +40,7 @@ class LoginPage extends React.Component {
             password: password
         }).then(res => {
             if(res.status === 200) {
-                this.props.history.push("/");
+                this.props.handleResponseSuccess();
             }else{
                 this.props.history.go(0);
              
@@ -88,6 +88,4 @@ class LoginPage extends React.Component {
         )
     }
 }
-
-
-export default withRouter(LoginPage);
+export default withRouter(SignIn);
