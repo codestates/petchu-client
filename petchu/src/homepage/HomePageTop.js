@@ -1,7 +1,8 @@
 import React from "react";
-import { Link, Switch,Route, Redirect, withRouter } from "react-router-dom";
+import { Link, Route, withRouter } from "react-router-dom";
 import axios from "axios";
 import LoginPage from "./LoginPage";
+import SignUp from "./SignUp";
 
 axios.defaults.withCredentials = true;
 
@@ -9,24 +10,33 @@ class HomePageTop extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state ={
-            login:true,
+        this.state = {
+            login: true,
         };
-        
+
     }
-    
+
     moveToLogin = () => {
 
     }
+
+    // <!--30. 링크넣어서 경로지정 후 이벤트 추가 -->
     render() {
-        return( 
-          <div>
-              <h2>TOP</h2>
-              <Link to="login">
-                <button onClick={ this.moveToLogin}>버튼이에요</button>
-              </Link>
-              <Route path="/login" component={LoginPage}></Route>
-          </div>
+        return (
+            <div>
+
+                <div>
+                    <label>
+                        <Link to="login">
+
+                            <Link to="signup"></Link>
+                        </Link>
+                    </label>
+                </div>
+                <button onClick={this.moveToLogin}>로그인</button>
+                <Route path="/login" component={LoginPage}></Route>
+                <Route path="/signup" component={SignUp}></Route>
+            </div>
         );
     };
 }
