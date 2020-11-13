@@ -1,6 +1,7 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter,Link,Route,Switch } from "react-router-dom";
 import axios from "axios";
+import MyPage from "./MyPage";
 axios.defaults.withCredentials = true;
 
 class LoginHomePage extends React.Component {
@@ -12,7 +13,23 @@ class LoginHomePage extends React.Component {
 
   render() {
     return(
-      <div> 로그인 되어있는 상태</div>
+      <div>
+        <header>
+          <Link to="/"><button>Home</button></Link>
+          <Link to="/mypage"><button>MyPage</button></Link>
+        </header>
+        <hr/>
+        <main>
+          <Switch>
+            <Route exact path="/mypage" 
+                render={() => {
+                  return <MyPage/>
+                }}
+              />
+          </Switch>
+        </main>
+      </div>
+
     )
   }
 }
