@@ -40,7 +40,7 @@ class GridPost extends React.Component {
         </GridListTile>
         {this.props.totalPostinfo.map((data) => (
           <GridListTile key={data.id}>
-
+            
             <img src={data.thumbnail} alt={data.title} />
             
             <GridListTileBar

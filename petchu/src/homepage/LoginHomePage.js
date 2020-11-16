@@ -1,14 +1,13 @@
 import React from "react";
-import { withRouter,Link,Route,Switch } from "react-router-dom";
+import { withRouter, Link, Route, Switch } from "react-router-dom";
 import axios from "axios";
 import MyPage from "./MyPage";
-import logo from '../images/logo.png';
-import Main from "./Main";
-import MyPostList from "./MyPostList";
+
+
 axios.defaults.withCredentials = true;
 
 class LoginHomePage extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -22,7 +21,7 @@ class LoginHomePage extends React.Component {
     })
   }
   render() {
-    return(
+    return (
       <div>
         <header>
         <Link to="/main">
@@ -31,11 +30,15 @@ class LoginHomePage extends React.Component {
                     </button>
                 </Link>
           <Link to="/mypage"><button>MyPage</button></Link>
+
           <Link to="/mypostlist">
             <button onClick={this.LoadToUserPost(this.props.id).bind(this)}>My Post List</button>
           </Link>
+
+          <Link to="/writenewpost"><button>WriteNewPost</button></Link>
+
         </header>
-        <hr/>
+        <hr />
         <main>
           <Switch>
           <Route  path="/main"
@@ -51,7 +54,7 @@ class LoginHomePage extends React.Component {
             <Route 
               path="/mypostlist"
                 render={() => {
-                  return <MyPostList userPostInfo={this.state.userPostInfo}/>
+                  return <MyPostList userPostInfo={this.state.userPostInfo} id={this.props.id}/>
                 }}
               />
           </Switch>

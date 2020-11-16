@@ -20,7 +20,7 @@ class SignUp extends React.Component {
         this.handleInputvalue = this.handleInputvalue.bind(this);
     }
     handleInputvalue = (key) => (e) => {
-        this.setState({ [key]: e.target.value }, this.checkPasswordAndPassword) //
+        this.setState({ [key]: e.target.value }) //
     };
     checkEmail = () => {
         const { email } = this.state;
