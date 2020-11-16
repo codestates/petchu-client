@@ -4,6 +4,9 @@ import axios from "axios";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import logo from '../images/logo.png';
+import WriteNewPost from "./WriteNewPost";
+
+
 
 import Main from "./Main";
 

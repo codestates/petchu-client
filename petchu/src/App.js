@@ -23,11 +23,19 @@ class App extends React.Component {
   }
 
   async handleResponseSuccess() {
+
     await axios.get("http://localhost:3000/user/signin")
     .then(res => {
       this.setState({isLogin: true, userinfo: res.data ,id : res.id})
       this.props.history.push("/");
     })
+
+    await axios.get("http://localhost:3000/user")
+      .then(res => {
+        this.setState({ isLogin: true, userinfo: res.data })
+        this.props.history.push("/");
+      })
+
   }
   render() {
     const { isLogin, userinfo } = this.state;

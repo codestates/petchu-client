@@ -11,7 +11,7 @@ class LoginHomePage extends React.Component {
     super(props);
 
     this.state = {
-      userPostInfo = null,
+      userPostInfo = null
     };
   };
   async LoadToUserPost (id){
