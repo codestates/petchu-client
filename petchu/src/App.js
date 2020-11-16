@@ -10,25 +10,49 @@ class App extends React.Component {
   state = {
     isLogin: false,
     userinfo: null,
+    id:null,
+    totalPostinfo: null,
+    
   };
+//수정
+  async componentDidMount(){
+    await axios.get("http://localhost:3000/post")
+    .then(res => {
+      this.setState({totalPostinfo: res.data})
+    })
+  }
 
   async handleResponseSuccess() {
+
+    await axios.get("http://localhost:3000/user/signin")
+    .then(res => {
+      this.setState({isLogin: true, userinfo: res.data ,id : res.id})
+      this.props.history.push("/");
+    })
+
     await axios.get("http://localhost:3000/user")
       .then(res => {
         this.setState({ isLogin: true, userinfo: res.data })
         this.props.history.push("/");
       })
+
   }
   render() {
     const { isLogin, userinfo } = this.state;
     return (
       <div>
         <Switch>
-          <Route path='/' render={() => {
-            if (isLogin) {
-              return <LoginHomePage></LoginHomePage>
-            } else if (!isLogin) {
-              return <LogOutHomePage handleResponseSuccess={this.handleResponseSuccess.bind(this)}></LogOutHomePage>
+          <Route path='/' render={ () => {
+            if(isLogin){
+             return <LoginHomePage 
+             totalPostinfo={this.state.totalPostinfo} id={this.state.id} 
+             handleResponseSuccess={this.handleResponseSuccess.bind(this)}
+             ></LoginHomePage>
+            }else if(!isLogin) {
+             return <LogOutHomePage 
+              totalPostinfo={this.state.totalPostinfo}
+             handleResponseSuccess={this.handleResponseSuccess.bind(this)}>            
+             </LogOutHomePage>
             }
           }} />
         </Switch>

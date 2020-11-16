@@ -8,8 +8,13 @@ import WriteNewPost from "./WriteNewPost";
 
 
 
-axios.defaults.withCredentials = true;
+import Main from "./Main";
 
+import WriteNewPost from "./WriteNewPost";
+
+
+axios.defaults.withCredentials = true;
+//수정
 class LogOutHomePage extends React.Component {
     constructor(props) {
         super(props);
@@ -27,12 +32,16 @@ class LogOutHomePage extends React.Component {
 
                     <Link to="/signin"><button>Sign In</button></Link>
                     <Link to="/signup"><button>Sign Up</button></Link>
-                    <Link to="/writenewpost"><button>WriteNewPost</button></Link>
+                    
                 </header>
                 <hr />
                 <main>
                     <Switch>
-                        <Route exact path="/"></Route>
+                        <Route exact path="/main"
+                            render={() => {
+                                return <Main totalPostinfo={this.props.totalPostinfo}></Main>
+                            }}
+                        ></Route>
                         <Route path="/signin"
                             render={() => {
                                 return <SignIn handleResponseSuccess={this.props.handleResponseSuccess} />
