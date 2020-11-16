@@ -37,7 +37,7 @@ class App extends React.Component {
           <Route path='/' render={ () => {
             if(isLogin){
              return <LoginHomePage 
-             totalPostinfo={this.state.totalPostinfo} id={this.state.id}
+             totalPostinfo={this.state.totalPostinfo} id={this.state.id} 
              handleResponseSuccess={this.handleResponseSuccess.bind(this)}
              ></LoginHomePage>
             }else if(!isLogin) {
