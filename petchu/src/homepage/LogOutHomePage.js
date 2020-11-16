@@ -14,7 +14,7 @@ import WriteNewPost from "./WriteNewPost";
 
 
 axios.defaults.withCredentials = true;
-
+//수정
 class LogOutHomePage extends React.Component {
     constructor(props) {
         super(props);

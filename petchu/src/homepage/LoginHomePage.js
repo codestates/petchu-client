@@ -5,13 +5,13 @@ import MyPage from "./MyPage";
 
 
 axios.defaults.withCredentials = true;
-
+//수정
 class LoginHomePage extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      userPostInfo = null
+      userPostInfo = null,
     };
   };
   async LoadToUserPost (id){

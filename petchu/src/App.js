@@ -14,7 +14,7 @@ class App extends React.Component {
     totalPostinfo: null,
     
   };
-
+//수정
   async componentDidMount(){
     await axios.get("http://localhost:3000/post")
     .then(res => {
