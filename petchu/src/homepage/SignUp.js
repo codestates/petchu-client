@@ -52,8 +52,7 @@ class SignUp extends React.Component {
         }
     }
     clickSignUp = () => {
-        //회원가입 요청 -> 로그인 페이지 이동
-        //끝
+
     }
     render() {
         return (

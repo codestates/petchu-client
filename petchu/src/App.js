@@ -10,12 +10,22 @@ class App extends React.Component {
   state ={
     isLogin : true,
     userinfo: null,
+    id:null,
+    totalPostinfo: null,
+    
   };
+
+  async componentDidMount(){
+    await axios.get("http://localhost:3000/post")
+    .then(res => {
+      this.setState({totalPostinfo: res.data})
+    })
+  }
 
   async handleResponseSuccess() {
     await axios.get("http://localhost:3000/user")
     .then(res => {
-      this.setState({isLogin: true, userinfo: res.data})
+      this.setState({isLogin: true, userinfo: res.data ,id : res.id})
       this.props.history.push("/");
     })
   }
@@ -26,9 +36,14 @@ class App extends React.Component {
         <Switch>
           <Route path='/' render={ () => {
             if(isLogin){
-             return <LoginHomePage></LoginHomePage>
+             return <LoginHomePage totalPostinfo={this.state.totalPostinfo} id={this.state.id}
+             handleResponseSuccess={this.handleResponseSuccess.bind(this)}
+             ></LoginHomePage>
             }else if(!isLogin) {
-             return <LogOutHomePage handleResponseSuccess={this.handleResponseSuccess.bind(this)}></LogOutHomePage>
+             return <LogOutHomePage 
+              totalPostinfo={this.state.totalPostinfo}
+             handleResponseSuccess={this.handleResponseSuccess.bind(this)}>            
+             </LogOutHomePage>
             }
           }}/>
         </Switch>
