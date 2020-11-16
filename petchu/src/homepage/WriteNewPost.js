@@ -16,7 +16,7 @@ class WriteNewPost extends React.Component {
             id: "",
             thumbnail: ""
         }
-        axios.post('https://localhost:3000/post.writeup', {
+        axios.post('https://localhost:8001/post/writeup', {
             title: this.state.title,
             content: this.state.content
         })
@@ -54,7 +54,7 @@ class WriteNewPost extends React.Component {
                     <a href="/mypostlist">
                         <button>나가기</button>
                     </a>
-                    <a href='https://localhost:3000/post/writeinfo/${this.id}'>
+                    <a href='https://localhost:8001/post/writeinfo/${this.id}'>
                         <button>게시완료</button>
                     </a>
                 </span>
