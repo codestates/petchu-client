@@ -45,6 +45,7 @@ class MyPage extends React.Component {
     //     }
 
     render() {
+        
         return (
             <div>
                 <span>
@@ -55,12 +56,12 @@ class MyPage extends React.Component {
                 </span>
                 <div>
                     <form>
-                        <p><label >닉네임: </label><input type='text' name='nickname' value={this.state.nickname} onChange={this.handleInputValue} placeholder='닉네임을 입력하세요'></input></p>
-                        <p><label >소셜 정보: </label><input type='text' name='socialInfo' value={this.state.socialInfo} onChange={this.handleInputValue} placeholder='소셜 정보를 입력하세요'></input></p>
-                        <p><label >이메일 주소: </label><input type='text' name='email' value={this.state.email} onChange={this.handleInputValue} placeholder='이메일 주소를 입력하세요'></input></p>
-                        <p><label >펫 정보(옵션): </label><input type='checkbox'></input><input name='petInfo' type='text' value={this.state.petInfo} onChange={this.handleInputValue} placeholder='반려동물 정보를 입력하세요'></input></p>
-                        <p><label>비밀번호 변경: </label><input type='password' name='password' value={this.state.password} onChange={this.handleInputValue} placeholder='비밀번호를 입력하세요'></input></p>
-                        <p><label >비밀번호 확인: </label><input type='password' name='passwordCheck' value={this.state.passwordCheck} onChange={this.handleInputValue} placeholder='비밀번호를 다시 입력하세요'></input></p>
+                        <p><label >닉네임: </label><input type='text' name='nickname' value={this.props.userinfo.nickname} onChange={this.handleInputValue} placeholder='닉네임을 입력하세요'></input></p>
+                        <p><label >소셜 정보: </label><input type='text' name='socialInfo' value={this.props.userinfo.socialInfo} onChange={this.handleInputValue} placeholder='소셜 정보를 입력하세요'></input></p>
+                        <p><label >이메일 주소: </label><input type='text' name='email' value={this.props.userinfo.email} onChange={this.handleInputValue} placeholder='이메일 주소를 입력하세요'></input></p>
+                        <p><label >펫 정보(옵션): </label><input type='checkbox'></input><input name='petInfo' type='text' value={this.props.userinfo.petInfo} onChange={this.handleInputValue} placeholder='반려동물 정보를 입력하세요'></input></p>
+                        <p><label>비밀번호 변경: </label><input type='password' name='password' onChange={this.handleInputValue} placeholder='비밀번호를 입력하세요'></input></p>
+                        <p><label >비밀번호 확인: </label><input type='password' name='passwordCheck'  onChange={this.handleInputValue} placeholder='비밀번호를 다시 입력하세요'></input></p>
                     </form>
                     <button className="finishediting" onClick={this.editUserInfo}>수정완료</button>
                 </div>

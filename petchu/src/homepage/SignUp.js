@@ -24,7 +24,7 @@ class SignUp extends React.Component {
     };
     checkEmail = () => {
         const { email } = this.state;
-        axios.post('http://localhost:3000/signup', {
+        axios.post('http://localhost:8001/user/signup/checkid', {
             email: email
         }).then(res => {
             if (res.status === 200) {
@@ -40,19 +40,26 @@ class SignUp extends React.Component {
     }
     //어떻게 같은지 다른지 확인할 것인가
     checkPasswordAndPassword = () => {
-        const { password, passwordcheck } = this.state
+       const { password, passwordcheck } = this.state
         if (password !== passwordcheck) {
-            this.setState({
+          return  this.setState({
                 alertpassword: "비밀번호가 일치하지 않습니다."
             })
         } else if (password === passwordcheck) {
-            this.setState({
+          return  this.setState({
                 alertpassword: "사용가능한 비밀번호 입니다."
             })
         }
     }
-    clickSignUp = () => {
-
+    clickSignUp = async () => {
+        await axios.post('http://localhost:8001/user/signup', {
+            email: this.state.email,
+            password: this.state.password,
+            username: this.state.username,
+            nickname: this.state.nickname
+        }).then(
+            this.props.history.push('/')
+        ).catch( err => console.error(err.statusText))
     }
     render() {
         return (
@@ -61,16 +68,26 @@ class SignUp extends React.Component {
                     <h1>회원가입</h1>
                 </center>
                 <Link to="signup"></Link>
-                <div>
-                    <label for="input-text">email</label><input type="email" onChange={this.handleInputvalue("email")} placeholder="이메일을 입력하세요"></input>
                     <div>
-                        <label for="password">password</label><input type="password" onChange={this.handleInputvalue("password")} placeholder="비밀번호를 입력하세요"></input>
+                    <label>username :</label><input type="input-text" onChange={this.handleInputvalue} placeholder="이름을 입력하세요"></input>
+                    </div>
+                    <div>
+                    <label>nickname :</label><input type="input-text" onChange={this.handleInputvalue} placeholder="별명을 입력하세요"></input>
+                    </div>
+                    <div>
+                    <label>email</label><input type="email" onChange={this.handleInputvalue("email")} placeholder="이메일을 입력하세요"></input>
+                    <div>
+                        {this.state.alertemail}
+                    </div>
+                    <div>
+                        <label>password</label><input type="password" onChange={this.handleInputvalue("password")} placeholder="비밀번호를 입력하세요"></input>
                     </div>
                 </div>
-                <label for="password">check password</label><input type="password" onChange={this.handleInputvalue("passwordcheck")} placeholder="비밀번호를 입력하세요"></input>
+                <label>check password</label><input type="password" onChange={this.handleInputvalue("passwordcheck")} placeholder="비밀번호를 입력하세요"></input>
                 <div>
                     {this.state.alertpassword}
                 </div>
+                    
                 <button onClick={this.clickSignUp} > 회원가입 완료</button>
                 <Link to="/login">로그인을 하세요</Link>
             </div >

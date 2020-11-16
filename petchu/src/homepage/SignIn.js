@@ -35,10 +35,11 @@ class SignIn extends React.Component {
         }else if(!password){
             return this.setState({errorMessage:'password 을 확인해주세요'});
         }
-        await axios.post('http://localhost:3000/signin',{
+        await axios.post('http://localhost:8001/user/signin',{
             email: email,
             password: password
         }).then(res => {
+            
             if(res.status === 200) {
                 this.props.handleResponseSuccess();
             }else{
@@ -63,7 +64,7 @@ class SignIn extends React.Component {
                         <div>
                         <label>Email:    </label> <input type="email" onChange={this.handleInputValue("email")}></input>
                         <br/>
-                        <label>password: </label> <input type="password" onChange={this.handleInputValue("email")}></input>
+                        <label>password: </label> <input type="password" onChange={this.handleInputValue("password")}></input>
                         </div>
                         <div>
                         <Button variant="outlined" color="secondary" type='submit' onClick={this.handleSignin}>Sign in</Button>
