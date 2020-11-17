@@ -15,16 +15,11 @@ class LoginHomePage extends React.Component {
       userPostInfo : "",
     };
   };
-  async LoadToUserPost (id){
-    await axios.get(`http://localhost:8001/writelist/${this.id}`)
-    .then(res => {
-      this.setState({userPostInfo:res.data})
-    })
-  }
   render() {
     return (
       <div>
         <header>
+        <label>Nick name</label><div>{this.props.userinfo.nickname}</div>
         <Link to="/">
                     <button>
                     <img className="logo" src={logo} width="13" height="14" alt="Home"></img>    

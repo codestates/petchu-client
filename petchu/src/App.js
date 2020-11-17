@@ -17,17 +17,28 @@ class App extends React.Component {
       totalPostinfo: null,
       
     };
+    this.handleMainpost = this.handleMainpost.bind(this);
   }
  
-  async handleResponseSuccess() {
-    await axios.get("http://localhost:8001/")
+
+  async handleMainpost(){
+    await axios.get("http://localhost:8001/post/writeall")
     .then(res => {
-      this.setState({isLogin: true, userinfo: res})
-      console.log("asaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-      console.dir(res);
-      console.log(this.state.isLogin)
+      console.log(res.data);
+      this.setState({totalPostinfo:res.data})
       this.props.history.push("/");
     })
+  }
+  async handleResponseSuccess() {
+    await axios.get("http://localhost:8001/user/userinfo")
+      .then(res => {
+        console.log("res:", res);
+        console.log("res.data:", res.data);
+        this.setState({ isLogin: true, userinfo: res.data })
+        console.log(this.state.userinfo)
+        //this.props.history.push("/");
+        this.handleMainpost();
+      })
   }
   render() {
     
@@ -35,10 +46,10 @@ class App extends React.Component {
     return (
       <div>
         <Switch>
-          <Route path='/' render={ () => {
+          <Route  path='/' render={ () => {
             if(isLogin){
             return  <LoginHomePage 
-             totalPostinfo={this.state.totalPostinfo} userinfo={this.state.userinfo}
+             totalPostinfo={this.state.totalPostinfo} userinfo={userinfo}
              handleResponseSuccess={this.handleResponseSuccess.bind(this)}
              ></LoginHomePage>
             }else if(!isLogin) {

@@ -69,10 +69,10 @@ class SignUp extends React.Component {
                 </center>
                 <Link to="signup"></Link>
                     <div>
-                    <label>username :</label><input type="input-text" onChange={this.handleInputvalue} placeholder="이름을 입력하세요"></input>
+                    <label>username :</label><input type="input-text" onChange={this.handleInputvalue("username")} placeholder="이름을 입력하세요"></input>
                     </div>
                     <div>
-                    <label>nickname :</label><input type="input-text" onChange={this.handleInputvalue} placeholder="별명을 입력하세요"></input>
+                    <label>nickname :</label><input type="input-text" onChange={this.handleInputvalue("nickname")} placeholder="별명을 입력하세요"></input>
                     </div>
                     <div>
                     <label>email</label><input type="email" onChange={this.handleInputvalue("email")} placeholder="이메일을 입력하세요"></input>
