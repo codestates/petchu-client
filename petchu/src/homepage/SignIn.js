@@ -98,7 +98,6 @@ class SignIn extends React.Component {
                   src={gitlogo}
                   width="100"
                   height="40"
-                  alt="띠용"
                 ></img>
               </a>
             </div>
