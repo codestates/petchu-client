@@ -3,95 +3,151 @@ import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 class SignUp extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            //회원 정보 가져오기 
-            email: "",
-            password: "",
-            passwordcheck: "",
-            username: "",
-            nickname: "",
-            errormessage: "",
-            alertemail: "",
-            alertpassword: ""
-        };
-        this.clickSignUp = this.clickSignUp.bind(this);
-        this.handleInputvalue = this.handleInputvalue.bind(this);
-    }
-    handleInputvalue = (key) => (e) => {
-        this.setState({ [key]: e.target.value }) //
+  constructor(props) {
+    super(props);
+    this.state = {
+      //회원 정보 가져오기
+      email: "",
+      password: "",
+      passwordcheck: "",
+      username: "",
+      nickname: "",
+      errormessage: "",
+      alertemail: "",
+      alertpassword: "",
     };
-    checkEmail = () => {
-        const { email } = this.state;
-        axios.post('http://localhost:8001/user/signup/checkid', {
-            email: email
-        }).then(res => {
-            if (res.status === 200) {
-                return this.setState({
-                    alertemail: "사용 가능한 이메일 입니다."
-                })
-            } else {
-                return this.setState({
-                    alertemail: "이미 사용중인 이메일 입니다."
-                })
-            }
-        })
+    this.clickSignUp = this.clickSignUp.bind(this);
+    this.handleInputvalue = this.handleInputvalue.bind(this);
+  }
+
+  handleInputvalue = (key) => (e) => {
+    this.setState({ [key]: e.target.value });
+  };
+
+  //   checkEmail = () => {
+  //     const { email } = this.state;
+  //     axios
+  //       .post("http://localhost:8001/user/signup/checkid", {
+  //         email: email,
+  //       })
+  //       .then((res) => {
+  //         if (res.status === 200) {
+  //           return this.setState({
+  //             alertemail: "사용 가능한 이메일 입니다.",
+  //           });
+  //         } else {
+  //           return this.setState({
+  //             alertemail: "이미 사용중인 이메일 입니다.",
+  //           });
+  //         }
+  //       });
+  //   };
+  //어떻게 같은지 다른지 확인할 것인가
+  //   checkPasswordAndPassword = () => {
+  //     const { password, passwordcheck } = this.state;
+  //     if (password !== passwordcheck) {
+  //       return this.setState({
+  //         alertpassword: "비밀번호가 일치하지 않습니다.",
+  //       });
+  //     } else if (password === passwordcheck) {
+  //       return this.setState({
+  //         alertpassword: "사용가능한 비밀번호 입니다.",
+  //       });
+  //     }
+  //   };
+
+  componentDidMount() {
+    this.timerID = setInterval(() => this.tick(), 1000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    const { email, password, passwordcheck, username, nickname } = this.state;
+    if (!email) {
+      this.setState({ errorMessage: "Email 을 확인해주세요" });
+    } else if (!password) {
+      this.setState({ errorMessage: "password 을 확인해주세요" });
+    } else if (!passwordcheck) {
+      this.setState({ errorMessage: "check password 을 확인해주세요" });
+    } else if (password !== passwordcheck) {
+      this.setState({ errorMessage: "비밀번호가 일치하지 않습니다." });
+    } else if (!username) {
+      this.setState({ errorMessage: "username 을 확인해주세요" });
+    } else if (!nickname) {
+      this.setState({ errorMessage: "nickname 을 확인해주세요" });
+    } else {
+      this.setState({ errorMessage: "" });
     }
-    //어떻게 같은지 다른지 확인할 것인가
-    checkPasswordAndPassword = () => {
-       const { password, passwordcheck } = this.state
-        if (password !== passwordcheck) {
-          return  this.setState({
-                alertpassword: "비밀번호가 일치하지 않습니다."
-            })
-        } else if (password === passwordcheck) {
-          return  this.setState({
-                alertpassword: "사용가능한 비밀번호 입니다."
-            })
-        }
-    }
-    clickSignUp = async () => {
-        await axios.post('http://localhost:8001/user/signup', {
-            email: this.state.email,
-            password: this.state.password,
-            username: this.state.username,
-            nickname: this.state.nickname
-        }).then(
-            this.props.history.push('/')
-        ).catch( err => console.error(err.statusText))
-    }
-    render() {
-        return (
-            <div>
-                <center>
-                    <h1>회원가입</h1>
-                </center>
-                <Link to="signup"></Link>
-                    <div>
-                    <label>username :</label><input type="input-text" onChange={this.handleInputvalue("username")} placeholder="이름을 입력하세요"></input>
-                    </div>
-                    <div>
-                    <label>nickname :</label><input type="input-text" onChange={this.handleInputvalue("nickname")} placeholder="별명을 입력하세요"></input>
-                    </div>
-                    <div>
-                    <label>email</label><input type="email" onChange={this.handleInputvalue("email")} placeholder="이메일을 입력하세요"></input>
-                    <div>
-                        {this.state.alertemail}
-                    </div>
-                    <div>
-                        <label>password</label><input type="password" onChange={this.handleInputvalue("password")} placeholder="비밀번호를 입력하세요"></input>
-                    </div>
-                </div>
-                <label>check password</label><input type="password" onChange={this.handleInputvalue("passwordcheck")} placeholder="비밀번호를 입력하세요"></input>
-                <div>
-                    {this.state.alertpassword}
-                </div>
-                    
-                <button onClick={this.clickSignUp} > 회원가입 완료</button>
-                <Link to="/login">로그인을 하세요</Link>
-            </div >
-        )
-    }
+  }
+
+  clickSignUp = async () => {
+    await axios
+      .post("http://localhost:8001/user/signup", {
+        email: this.state.email,
+        password: this.state.password,
+        username: this.state.username,
+        nickname: this.state.nickname,
+      })
+      .then((res) => {
+        this.props.history.push("/");
+      })
+      .catch((err) => console.error(err.statusText));
+  };
+  render() {
+    return (
+      <div>
+        <center>
+          <h1>회원가입</h1>
+        </center>
+        <Link to="signup"></Link>
+        <div>
+          <label>username :</label>
+          <input
+            type="input-text"
+            onChange={this.handleInputvalue("username")}
+            placeholder="이름을 입력하세요"
+          ></input>
+        </div>
+        <div>
+          <label>nickname :</label>
+          <input
+            type="input-text"
+            onChange={this.handleInputvalue("nickname")}
+            placeholder="별명을 입력하세요"
+          ></input>
+        </div>
+        <div>
+          <label>email</label>
+          <input
+            type="email"
+            onChange={this.handleInputvalue("email")}
+            placeholder="이메일을 입력하세요"
+          ></input>
+          <div>{this.state.alertemail}</div>
+          <div>
+            <label>password</label>
+            <input
+              type="password"
+              onChange={this.handleInputvalue("password")}
+              placeholder="비밀번호를 입력하세요"
+            ></input>
+          </div>
+        </div>
+        <label>check password</label>
+        <input
+          type="password"
+          onChange={this.handleInputvalue("passwordcheck")}
+          placeholder="비밀번호를 입력하세요"
+        ></input>
+        <div>{this.state.alertpassword}</div>
+
+        <button onClick={this.clickSignUp}> 회원가입 완료</button>
+        <Link to="/signin">로그인을 하세요</Link>
+        <div className="alert-box">{this.state.errorMessage}</div>
+      </div>
+    );
+  }
 }
 export default withRouter(SignUp);
