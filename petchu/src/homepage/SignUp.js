@@ -91,7 +91,7 @@ class SignUp extends React.Component {
         nickname: this.state.nickname,
       })
       .then((res) => {
-        this.props.history.push("/");
+        window.location = "/signin";
       })
       .catch((err) => console.error(err.statusText));
   };
