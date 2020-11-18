@@ -3,8 +3,9 @@ import { withRouter, Link, Route, Switch } from "react-router-dom";
 import axios from "axios";
 import MyPage from "./MyPage";
 import logo from "../images/logo.png";
-import Main from "./Main";
 import MyPostList from "./MyPostList";
+import './button.css'
+
 axios.defaults.withCredentials = true;
 //수정
 class LoginHomePage extends React.Component {
@@ -29,32 +30,32 @@ class LoginHomePage extends React.Component {
     return (
       <div>
         <header>
-          <label>Nick name</label>
-          <div>{this.props.userinfo.nickname}</div>
+
+          <label>{this.props.userinfo.nickname}</label>
           <Link to="/">
-            <button>
+            <button className="click">
               <img
                 className="logo"
                 src={logo}
-                width="13"
-                height="14"
+                width="33"
+                height="29"
                 alt="Home"
               ></img>
             </button>
           </Link>
           <Link to="/mypage">
-            <button>MyPage</button>
+            <button className="click">MyPage</button>
           </Link>
 
           <Link to="/mypostlist">
-            <button>My Post List</button>
+            <button className="click">My Post List</button>
           </Link>
 
           <Link to="/writenewpost">
-            <button>WriteNewPost</button>
+            <button className="click"> WriteNewPost</button>
           </Link>
 
-          <button onClick={this.handleSignOut}>Log Out</button>
+          <button className="click" onClick={this.handleSignOut}>Log Out</button>
         </header>
         <hr />
         <main>

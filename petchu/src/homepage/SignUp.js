@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 axios.defaults.withCredentials = true;
 class SignUp extends React.Component {
   constructor(props) {
@@ -103,48 +105,46 @@ class SignUp extends React.Component {
         </center>
         <Link to="signup"></Link>
         <div>
-          <label>username :</label>
-          <input
-            type="input-text"
+          <TextField id="standard-basic" label="username"
+            input type="input-text"
             onChange={this.handleInputvalue("username")}
             placeholder="이름을 입력하세요"
-          ></input>
+          />
         </div>
         <div>
-          <label>nickname :</label>
-          <input
-            type="input-text"
+          <TextField id="standard-basic" label="nickname"
+            input type="input-text"
             onChange={this.handleInputvalue("nickname")}
             placeholder="별명을 입력하세요"
-          ></input>
+          />
         </div>
         <div>
-          <label>email</label>
-          <input
-            type="email"
+          <TextField id="standard-basic" label="email"
+            input type="email"
             onChange={this.handleInputvalue("email")}
             placeholder="이메일을 입력하세요"
-          ></input>
+          />
+
           <div>{this.state.alertemail}</div>
           <div>
-            <label>password</label>
-            <input
-              type="password"
+            <TextField id="standard-basic" label="password"
+              input type="password"
               onChange={this.handleInputvalue("password")}
               placeholder="비밀번호를 입력하세요"
-            ></input>
+            />
+
           </div>
         </div>
-        <label>check password</label>
-        <input
-          type="password"
+        <TextField id="standard-basic" label="check password"
+          input type="password"
           onChange={this.handleInputvalue("passwordcheck")}
           placeholder="비밀번호를 입력하세요"
-        ></input>
-        <div>{this.state.alertpassword}</div>
+        />
 
-        <button onClick={this.clickSignUp}> 회원가입 완료</button>
-        <Link to="/signin">로그인을 하세요</Link>
+        <div>{this.state.alertpassword}</div>
+        <Button onClick={this.clickSignUp}>회원가입완료 </Button>
+
+
         <div className="alert-box">{this.state.errorMessage}</div>
       </div>
     );
