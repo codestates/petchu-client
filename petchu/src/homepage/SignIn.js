@@ -5,7 +5,11 @@ import logo from "../images/logo.png";
 import gitlogo from "../images/github.jpg";
 //import ContainedButtons from "./ContainedButtons";
 //import { makeStyles } from '@material-ui/core/styles';
-import Button from "@material-ui/core/Button";
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import './button.css'
+
 
 axios.defaults.withCredentials = true;
 //<button type='submit' onClick={this.handleSignin}>Sing In</button>
@@ -51,65 +55,51 @@ class SignIn extends React.Component {
   render() {
     return (
       <div>
-        <div>
-          <img
-            className="logo"
-            src={logo}
-            width="13"
-            height="14"
-            alt="띠용"
-          ></img>
-        </div>
+
+
         <center>
           <h1>Sign In!</h1>
           <form onSubmit={(e) => e.preventDefault()}>
             <div>
-              <label>Email: </label>{" "}
-              <input
-                type="email"
+              <TextField id="standard-basic" label="Email"
+                input type="email"
                 onChange={this.handleInputValue("email")}
-              ></input>
+              />
               <br />
-              <label>password: </label>{" "}
-              <input
-                type="password"
+              <TextField id="standard-basic" label="Password"
+                input type="password"
                 onChange={this.handleInputValue("password")}
-              ></input>
+              />
             </div>
             <div>
-              <Button
-                variant="outlined"
-                color="secondary"
-                type="submit"
-                onClick={this.handleSignin}
-              >
-                Sign in
-              </Button>
+
+              <Button onClick={this.handleSignin}>Login </Button>
             </div>
             <div className="alert-box">{this.state.errorMessage}</div>
           </form>
           <hr></hr>
           <div>
-            <h3>소셜 로그인</h3>
+            <h3>Social Login</h3>
             <div>
-              <a href="https://github.com/login/oauth/authorize?client_id=9a27c45004303e2ce020&redirect_uri=http://localhost:8001/oauth/github">
-                <img
-                  className="logo"
-                  src={gitlogo}
-                  width="100"
-                  height="40"
-                ></img>
-              </a>
+              <Button >
+                <a href="https://github.com/login/oauth/authorize?client_id=9a27c45004303e2ce020&redirect_uri=http://localhost:8001/oauth/github">
+                  <img
+                    className="logo"
+                    src={gitlogo}
+                    width="100"
+                    height="40"
+                  ></img>
+                </a></Button>
             </div>
 
             <div>
-              <Button variant="contained" color="primary" disableElevation>
-                <Link to="/signup">회원가입</Link>
+              <Button className='click' size='small'>
+                <Link to="/signup">Sign Up</Link>
               </Button>
             </div>
           </div>
         </center>
-      </div>
+      </div >
     );
   }
 }
