@@ -1,7 +1,12 @@
 # Welcome to Petchu 🐶 
+
 > "반려동물과의 추억을 저장해보세요"
 
-## Description
+## Duration ⏰
+
+2weeks
+
+## Description 🔎
 
 Petchu는 반려동물과의 추억을 저장할 수 있는 웹 서비스입니다. 일종의 일기장처럼 반려동물과 있었던 일상을 게시글로 올리고 저장할 수 있는 기능을 구현하였습니다. 
 
@@ -26,12 +31,12 @@ Petchu는 반려동물과의 추억을 저장할 수 있는 웹 서비스입니�
 글 작성
 
 
-## Stack
+## Stack 🛠
 
 1. Front: React, css, Material UI
 2. Back: Sequelize, Node.js, Express, Mysql
 
-## Contributors
+## 👨🏻‍💻 Contributors👩🏻‍💻
 
 유지은 Back-end
 
