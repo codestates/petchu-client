@@ -5,6 +5,7 @@ import LoginHomePage from "./homepage/LoginHomePage";
 import LogOutHomePage from "./homepage/LogOutHomePage";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
+import { BASEURL } from "./helpurl";
 
 axios.defaults.withCredentials = true;
 class App extends React.Component {
@@ -22,7 +23,7 @@ class App extends React.Component {
   }
 
   async handleMainpost() {
-    await axios.get("http://localhost:8001/post/writeall").then((res) => {
+    await axios.get(`${BASEURL}/post/writeall`).then((res) => {
       this.setState({ totalPostinfo: res.data });
       console.log("여기는 모두의 게시물공간");
       console.table(this.state.totalPostinfo);
@@ -30,7 +31,7 @@ class App extends React.Component {
     });
   }
   async handleResponseSuccess() {
-    await axios.get("http://localhost:8001/user/userinfo").then((res) => {
+    await axios.get(`${BASEURL}/user/userinfo`).then((res) => {
       this.setState({ isLogin: true, userinfo: res.data });
       console.log(this.state.userinfo);
       this.handleMainpost();

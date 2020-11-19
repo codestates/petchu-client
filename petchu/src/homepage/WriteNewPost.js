@@ -4,6 +4,7 @@ import axios from "axios";
 import "fontsource-roboto";
 import TextField from "@material-ui/core/TextField";
 import "./button.css";
+import { BASEURL } from "../helpurl";
 
 axios.defaults.withCredentials = true;
 class WriteNewPost extends React.Component {
@@ -38,7 +39,7 @@ class WriteNewPost extends React.Component {
       });
     }
     axios
-      .post("http://localhost:8001/post/writeup", {
+      .post(`${BASEURL}/post/writeup`, {
         title: title,
         content: content,
       })
