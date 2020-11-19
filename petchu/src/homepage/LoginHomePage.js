@@ -6,7 +6,7 @@ import logo from "../images/logo.png";
 import MyPostList from "./MyPostList";
 import WriteNewPost from "./WriteNewPost";
 import "./button.css";
-
+import Main from "./Main";
 axios.defaults.withCredentials = true;
 //수정
 class LoginHomePage extends React.Component {
@@ -105,6 +105,12 @@ class LoginHomePage extends React.Component {
                 return <WriteNewPost />;
               }}
             />
+            <Route
+             exact path="/"
+              render={() => {
+                return <Main />;
+              }}
+            ></Route>
           </Switch>
         </main>
       </div>
