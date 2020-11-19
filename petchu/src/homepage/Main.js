@@ -1,29 +1,26 @@
 import React from "react";
-import { Link, Route, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import axios from "axios";
-import GridPost from "./GridPost";
-import { Switch } from "@material-ui/core";
+
 axios.defaults.withCredentials = true;
-
 class Main extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state ={
-            totalPostinfo:this.props.totalPostinfo,
-        }
-    }
-    render(){
-        
-        return(
-            <div>
-                {this.props.totalPostinfo.length === 0 ?
-                "POST IS NULL 😜!"
-            : <GridPost totalPostinfo={this.props.totalPostinfo}/>
-                }
-            </div>
-            
-        )
-    }
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    const style = {
+      border: "1px solid black",
+      padding: "8px",
+      margin: "8px",
+    };
+    return (
+      <div style={style}>
+        <div>
+          <b>{this.props.posts.title}</b>
+        </div>
+        <div>{this.props.posts.content}</div>
+      </div>
+    );
+  }
 }
 export default withRouter(Main);

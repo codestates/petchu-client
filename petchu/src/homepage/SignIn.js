@@ -1,19 +1,11 @@
 import React from "react";
-import { Link, withRouter, Switch, Route } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import axios from "axios";
-import logo from "../images/logo.png";
-import gitlogo from "../images/github.jpg";
-//import ContainedButtons from "./ContainedButtons";
-//import { makeStyles } from '@material-ui/core/styles';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import './button.css'
-
+import gitlogo from "../images/github.png";
+import TextField from "@material-ui/core/TextField";
+import "./button.css";
 
 axios.defaults.withCredentials = true;
-//<button type='submit' onClick={this.handleSignin}>Sing In</button>
-
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
@@ -33,10 +25,16 @@ class SignIn extends React.Component {
 
   handleSignin = async () => {
     const { email, password } = this.state;
-    if (!email) {
-      return this.setState({ errorMessage: "Email 을 확인해주세요" });
+    if (!email && !password) {
+      return this.setState({
+        errorMessage: "Email 과  Password 를 입력해주세요",
+      });
+    } else if (!email) {
+      return this.setState({ errorMessage: "Email 을 입력해주세요" });
     } else if (!password) {
-      return this.setState({ errorMessage: "password 을 확인해주세요" });
+      return this.setState({ errorMessage: "Password 를 입력해주세요" });
+    } else {
+      this.setState({ errorMessage: "" });
     }
     await axios
       .post("http://localhost:8001/user/signin", {
@@ -49,57 +47,62 @@ class SignIn extends React.Component {
         } else {
           this.props.history.go(0);
         }
+      })
+      .catch((err) => {
+        if (err.message === "Request failed with status code 404") {
+          this.setState({
+            errorMessage:
+              "회원 정보를 찾을 수 없습니다. Email 과  Password 를 확인해주세요.",
+          });
+        }
       });
   };
 
   render() {
     return (
       <div>
-
-
         <center>
           <h1>Sign In!</h1>
           <form onSubmit={(e) => e.preventDefault()}>
             <div>
-              <TextField id="standard-basic" label="Email"
-                input type="email"
+              <TextField
+                id="standard-basic"
+                label="Email"
+                input
+                type="email"
                 onChange={this.handleInputValue("email")}
+                placeholder="이메일을 입력하세요"
               />
               <br />
-              <TextField id="standard-basic" label="Password"
-                input type="password"
+              <TextField
+                id="standard-basic"
+                label="Password"
+                input
+                type="password"
                 onChange={this.handleInputValue("password")}
+                placeholder="비밀번호를 입력하세요"
               />
             </div>
             <div>
-
-              <Button onClick={this.handleSignin}>Login </Button>
+              <button className="click" onClick={this.handleSignin}>
+                Login
+              </button>
             </div>
             <div className="alert-box">{this.state.errorMessage}</div>
           </form>
           <hr></hr>
           <div>
-            <h3>Social Login</h3>
+            <h1>Social Login!</h1>
             <div>
-              <Button >
+              <button className="click">
                 <a href="https://github.com/login/oauth/authorize?client_id=9a27c45004303e2ce020&redirect_uri=http://localhost:8001/oauth/github">
-                  <img
-                    className="logo"
-                    src={gitlogo}
-                    width="100"
-                    height="40"
-                  ></img>
-                </a></Button>
-            </div>
-
-            <div>
-              <Button className='click' size='small'>
-                <Link to="/signup">Sign Up</Link>
-              </Button>
+                  <img className="gitlogo" src={gitlogo}></img>
+                </a>
+              </button>
             </div>
           </div>
         </center>
-      </div >
+      </div>
     );
   }
 }

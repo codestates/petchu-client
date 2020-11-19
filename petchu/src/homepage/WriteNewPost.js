@@ -1,66 +1,99 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
-import Upload from "./Upload";
+import "fontsource-roboto";
+import TextField from "@material-ui/core/TextField";
+import "./button.css";
 
 axios.defaults.withCredentials = true;
-
-// 보내야 하는 정보: 제목, 글내용, 썸네일, 닉네임, 아이디로 유저 판별
 class WriteNewPost extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            title: "",
-            content: "",
-            nickname: "",
-            id: "",
-            thumbnail: ""
-        }
-        axios.post('https://localhost:8001/post/writeup', {
-            title: this.state.title,
-            content: this.state.content
-        })
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
-
-    handleInputcontent = (e) => {
-        this.setState({ ...this.state, [e.target.name]: e.target.content });
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: "",
+      content: "",
+      errorMessage: "",
     };
+    this.handleInputcontent = this.handleInputcontent.bind(this);
+    this.handleWriteNewPost = this.handleWriteNewPost.bind(this);
+  }
 
-    handleChange(event) {
-        this.setState({ content: event.target.content, title: event.target.title });
+  handleInputcontent = (key) => (e) => {
+    this.setState({ [key]: e.target.value });
+  };
+
+  handleWriteNewPost = async () => {
+    const { title, content } = this.state;
+    if (!title & !content) {
+      return this.setState({
+        errorMessage: "title 과 content 를 입력해주세요",
+      });
+    } else if (!title) {
+      return this.setState({
+        errorMessage: "title 를 입력해주세요",
+      });
+    } else if (!content) {
+      return this.setState({
+        errorMessage: "content 를 입력해주세요",
+      });
     }
+    axios
+      .post("http://localhost:8001/post/writeup", {
+        title: title,
+        content: content,
+      })
+      .then((res) => {
+        console.log(res);
+        window.location = "/mypostlist";
+      })
+      .catch((err) => console.error(err.statusText));
+  };
 
-    //제목, 태그 태그 / 썸네일을 위한 사진 버튼 / 게시글 bootstrap으로 랜더링
-    // 나가기/게시완료 버튼 누르면 -> 특정게시물 redirect 
-    render() {
-        return (
-            <div>
-                <div>
-                    <label>
-                        제목: <input type='content' name='title' content={this.state.title} onChange={this.handleInputcontent} placeholder='제목을 입력하세요'></input>
-                    </label>
-                </div>
-
-                <div><label>무슨 생각을 하고 계신가요?</label></div>
-                <textarea content={this.state.content} onChange={this.handleChange} />
-                <Upload></Upload>
-                <span>
-                    <a href="/mypostlist">
-                        <button>나가기</button>
-                    </a>
-                    <a href='https://localhost:8001/post/writeinfo/${this.id}'>
-                        <button>게시완료</button>
-                    </a>
-                </span>
-            </div >
-        )
-    }
+  render() {
+    return (
+      <div>
+        <h1 style={{ margin: 20 }}>WriteNewPost</h1>
+        <p>
+          <TextField
+            id="outlined-full-width"
+            label="title"
+            style={{ margin: 8 }}
+            placeholder="제목을 입력하세요"
+            fullWidth
+            InputLabelProps={{
+              shrink: true,
+            }}
+            variant="outlined"
+            onChange={this.handleInputcontent("title")}
+          />
+        </p>
+        <p>
+          <TextField
+            id="outlined-full-width"
+            label="content"
+            style={{ margin: 8 }}
+            placeholder="내용을 입력하세요"
+            fullWidth
+            InputLabelProps={{
+              shrink: true,
+            }}
+            multiline
+            rows={20}
+            variant="outlined"
+            onChange={this.handleInputcontent("content")}
+          />
+        </p>
+        <center>
+          <div>
+            <button className="click" onClick={this.handleWriteNewPost}>
+              Write
+            </button>
+          </div>
+          <div className="alert-box">{this.state.errorMessage}</div>
+        </center>
+      </div>
+    );
+  }
 }
 
 export default withRouter(WriteNewPost);

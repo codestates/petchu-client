@@ -1,20 +1,41 @@
 .click {
-    display: inline-block;
-    padding: 1px 25px;
-    font-size: 24px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color:#5D4037;
-    background-color: #DEDEDE;
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 9px #999;
-  }
-  .click:hover {background-color: #D2D2D2}
-  .click:active {
-    background-color: #AAAAAA;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-  }
+  display: inline-block;
+  padding: 1px 25px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #5d4037;
+  background-color: #dedede;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 9px #999;
+  margin: 3px;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+.click:hover {
+  background-color: #d2d2d2;
+}
+.click:active {
+  background-color: #aaaaaa;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+a {
+  text-decoration: none;
+  color: #5d4037;
+}
+.gitlogo {
+  text-align: center;
+  width: 90px;
+  height: 40px;
+  display: block;
+  margin: 0px auto;
+}
+
+/* .logo {
+  display: block;
+  margin: 0px auto;
+} */
