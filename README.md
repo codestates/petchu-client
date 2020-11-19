@@ -2,7 +2,7 @@
 
 CodeStates Immersive 23기 9조 Jib4 팀의 First-Project 입니다.
 Front - end : 윤지희(팀장), 임희찬 Back - end : 유지은, 이주연
-(server 측 레포는 여기입니다)
+(server 측 레포는 [여기](https://github.com/codestates/petchu-server) 입니다. )
 
 ## Duration ⏰
 
