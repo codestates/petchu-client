@@ -24,6 +24,9 @@ class Main extends React.Component {
       width: "70px",
       height: "59px"
     }
+    const intro = {
+      color:"#dedede"
+    }
     return (
       <div >
         <center>
@@ -81,7 +84,15 @@ class Main extends React.Component {
         
       </div>
         </center>
-       
+        <hr></hr>
+        <footer>
+          <center style={intro}>
+            <p>Petchu는 반려동물과의 추억을 저장하는 공간입니다. 오늘 하루 반려동물과 있었던 일들을 글로 남기고 일상을 기록해보세요.</p>
+          About us 
+We designed Petchu services to help our users save memories with their pets. Record your daily life with your pet in Petchu. Thanks for visiting our website and have fun!
+          </center>
+        
+        </footer>
       </div>
       
       
