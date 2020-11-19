@@ -44,15 +44,10 @@ Petchu는 반려동물과의 추억을 저장할 수 있는 웹 서비스입니�
 2. Back: Sequelize, Node.js, Express, Mysql
 
 
-## 👨🏻‍💻 Contributors👩🏻‍💻
+## Contributings 
 
-유지은 Back-end
-
-이주연 Back-end
-
-윤지희 Front-end 
-
-임희찬 Front-end 
+We would be very appreciated for the additional contributions 
+Feel free to check [issues](https://github.com/codestates/petchu-client/issues) page.
 
 
 
