@@ -1,12 +1,16 @@
 # Welcome to Petchu 🐶 
 
-> "반려동물과의 추억을 저장해보세요"
+CodeStates Immersive 23기 9조 Jib4 팀의 First-Project 입니다.
+Front - end : 윤지희(팀장), 임희찬 Back - end : 유지은, 이주연
+(server 측 레포는 여기입니다)
 
 ## Duration ⏰
 
 2weeks
 
 ## Description 🔎
+
+> "반려동물과의 추억을 저장해보세요"
 
 Petchu는 반려동물과의 추억을 저장할 수 있는 웹 서비스입니다. 일종의 일기장처럼 반려동물과 있었던 일상을 게시글로 올리고 저장할 수 있는 기능을 구현하였습니다. 
 
