@@ -17,9 +17,11 @@ class MyPostList extends React.Component {
     return (
       <div style={style}>
         <div>
-          <b>{this.props.post.title}</b>
+    <b>{this.props.post.title}</b>
         </div>
         <div>{this.props.post.content}</div>
+        <hr></hr>
+        <span>{this.props.post.createdAt}</span>
       </div>
     );
   }

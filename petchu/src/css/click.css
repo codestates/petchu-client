@@ -1,0 +1,22 @@
+.click {
+    display: inline-block;
+    padding: 1px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #adcae3;
+    background-color: #dedede;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
+  
+  .click:hover {background-color: #d2d2d2}
+  
+  .click:active {
+    background-color: #aaaaaa;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }

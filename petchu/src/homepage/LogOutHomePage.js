@@ -5,6 +5,7 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import logo from "../images/logo.png";
 import './button.css'
+import Main from "./Main";
 
 
 
@@ -52,6 +53,12 @@ class LogOutHomePage extends React.Component {
               path="/signup"
               render={() => {
                 return <SignUp />;
+              }}
+            ></Route>
+             <Route
+             exact path="/"
+              render={() => {
+                return <Main />;
               }}
             ></Route>
           </Switch>
