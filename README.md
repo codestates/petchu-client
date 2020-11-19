@@ -7,8 +7,11 @@
 # Contributors
 
 유지은 Back-end
+
 이주연 Back-end
+
 윤지희 Front-end 
+
 임희찬 Front-end 
 
 
