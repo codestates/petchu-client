@@ -46,7 +46,8 @@ Petchu는 반려동물과의 추억을 저장할 수 있는 웹 서비스입니�
 
 ## Contributings 
 
-We would be very appreciated for the additional contributions 
+We would be very appreciated for the additional contributions.
+
 Feel free to check [issues](https://github.com/codestates/petchu-client/issues) page.
 
 
