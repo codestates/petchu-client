@@ -31,13 +31,17 @@ class MyPage extends React.Component {
       return this.setState({ errorMessage: "Password 를 입력해주세요" });
     }
     await axios
-      .put(`${BASEURL}/user/useredit`, {
-        email: this.state.email,
-        password: this.state.password,
-        nickname: this.state.nickname,
-        petinfo: this.state.petinfo,
-        socialinfo: this.state.socialinfo,
-      })
+      .put(
+        `${BASEURL}/user/useredit`,
+        {
+          email: this.state.email,
+          password: this.state.password,
+          nickname: this.state.nickname,
+          petinfo: this.state.petinfo,
+          socialinfo: this.state.socialinfo,
+        },
+        { withCredentials: true }
+      )
       .then((res) => {
         if (res.status === 200) {
           window.location = "/";
