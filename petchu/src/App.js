@@ -23,19 +23,23 @@ class App extends React.Component {
   }
 
   async handleMainpost() {
-    await axios.get(`${BASEURL}/post/writeall`).then((res) => {
-      this.setState({ totalPostinfo: res.data });
-      console.log("여기는 모두의 게시물공간");
-      console.table(this.state.totalPostinfo);
-      this.props.history.push("/");
-    });
+    await axios
+      .get(`${BASEURL}/post/writeall`, null, { withCredentials: true })
+      .then((res) => {
+        this.setState({ totalPostinfo: res.data });
+        console.log("여기는 모두의 게시물공간");
+        console.table(this.state.totalPostinfo);
+        this.props.history.push("/");
+      });
   }
   async handleResponseSuccess() {
-    await axios.get(`${BASEURL}/user/userinfo`).then((res) => {
-      this.setState({ isLogin: true, userinfo: res.data });
-      console.log(this.state.userinfo);
-      this.handleMainpost();
-    });
+    await axios
+      .get(`${BASEURL}/user/userinfo`, { withCredentials: true })
+      .then((res) => {
+        this.setState({ isLogin: true, userinfo: res.data });
+        console.log(this.state.userinfo);
+        this.handleMainpost();
+      });
   }
 
   render() {

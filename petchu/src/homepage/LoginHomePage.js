@@ -22,7 +22,7 @@ class LoginHomePage extends React.Component {
 
   handleSignOut = async () => {
     await axios
-      .post(`${BASEURL}/user/signout`)
+      .post(`${BASEURL}/user/signout`, null, { withCredentials: true })
       .then((res) => {
         window.location = "/signin";
       })

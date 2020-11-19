@@ -38,10 +38,14 @@ class SignIn extends React.Component {
       this.setState({ errorMessage: "" });
     }
     await axios
-      .post(`${BASEURL}/user/signin`, {
-        email: email,
-        password: password,
-      })
+      .post(
+        `${BASEURL}/user/signin`,
+        {
+          email: email,
+          password: password,
+        },
+        { withCredentials: true }
+      )
       .then((res) => {
         if (res.status === 200) {
           this.props.handleResponseSuccess();

@@ -44,12 +44,16 @@ class SignUp extends React.Component {
       this.setState({ errorMessage: "" });
     }
     await axios
-      .post(`${BASEURL}user/signup`, {
-        email: this.state.email,
-        password: this.state.password,
-        username: this.state.username,
-        nickname: this.state.nickname,
-      })
+      .post(
+        `${BASEURL}/user/signup`,
+        {
+          email: this.state.email,
+          password: this.state.password,
+          username: this.state.username,
+          nickname: this.state.nickname,
+        },
+        { withCredentials: true }
+      )
       .then((res) => {
         window.location = "/signin";
       })

@@ -39,10 +39,14 @@ class WriteNewPost extends React.Component {
       });
     }
     axios
-      .post(`${BASEURL}/post/writeup`, {
-        title: title,
-        content: content,
-      })
+      .post(
+        `${BASEURL}/post/writeup`,
+        {
+          title: title,
+          content: content,
+        },
+        { withCredentials: true }
+      )
       .then((res) => {
         console.log(res);
         window.location = "/mypostlist";
