@@ -4,6 +4,7 @@ import axios from "axios";
 import "fontsource-roboto";
 import TextField from "@material-ui/core/TextField";
 import "./button.css";
+import { BASEURL } from "../helpurl";
 
 axios.defaults.withCredentials = true;
 class MyPage extends React.Component {
@@ -30,7 +31,7 @@ class MyPage extends React.Component {
       return this.setState({ errorMessage: "Password 를 입력해주세요" });
     }
     await axios
-      .put("http://localhost:8001/user/useredit", {
+      .put(`${BASEURL}/user/useredit`, {
         email: this.state.email,
         password: this.state.password,
         nickname: this.state.nickname,

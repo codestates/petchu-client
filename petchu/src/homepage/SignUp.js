@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 import TextField from "@material-ui/core/TextField";
+import { BASEURL } from "../helpurl";
 axios.defaults.withCredentials = true;
 class SignUp extends React.Component {
   constructor(props) {
@@ -43,7 +44,7 @@ class SignUp extends React.Component {
       this.setState({ errorMessage: "" });
     }
     await axios
-      .post("http://localhost:8001/user/signup", {
+      .post(`${BASEURL}user/signup`, {
         email: this.state.email,
         password: this.state.password,
         username: this.state.username,

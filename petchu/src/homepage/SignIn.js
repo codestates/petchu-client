@@ -4,6 +4,7 @@ import axios from "axios";
 import gitlogo from "../images/github.png";
 import TextField from "@material-ui/core/TextField";
 import "./button.css";
+import { BASEURL } from "../helpurl";
 
 axios.defaults.withCredentials = true;
 class SignIn extends React.Component {
@@ -37,7 +38,7 @@ class SignIn extends React.Component {
       this.setState({ errorMessage: "" });
     }
     await axios
-      .post("http://localhost:8001/user/signin", {
+      .post(`${BASEURL}/user/signin`, {
         email: email,
         password: password,
       })
@@ -95,7 +96,7 @@ class SignIn extends React.Component {
             <h1>Social Login!</h1>
             <div>
               <button className="click">
-                <a href="https://github.com/login/oauth/authorize?client_id=9a27c45004303e2ce020&redirect_uri=http://localhost:8001/oauth/github">
+                <a href="https://github.com/login/oauth/authorize?client_id=9a27c45004303e2ce020">
                   <img className="gitlogo" src={gitlogo}></img>
                 </a>
               </button>

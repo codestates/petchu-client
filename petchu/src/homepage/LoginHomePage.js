@@ -7,6 +7,8 @@ import MyPostList from "./MyPostList";
 import WriteNewPost from "./WriteNewPost";
 import "./button.css";
 import Main from "./Main";
+import { BASEURL } from "../helpurl";
+
 axios.defaults.withCredentials = true;
 //수정
 class LoginHomePage extends React.Component {
@@ -20,7 +22,7 @@ class LoginHomePage extends React.Component {
 
   handleSignOut = async () => {
     await axios
-      .post("http://localhost:8001/user/signout")
+      .post(`${BASEURL}/user/signout`)
       .then((res) => {
         window.location = "/signin";
       })
@@ -29,7 +31,7 @@ class LoginHomePage extends React.Component {
 
   handleUserPost = async () => {
     await axios
-      .get("http://localhost:8001/post/writelist")
+      .get(`${BASEURL}/post/writelist`)
       .then((res) => {
         this.setState({ userPostInfo: res.data });
         console.log("여기는 유저의 개인공간");
@@ -106,7 +108,8 @@ class LoginHomePage extends React.Component {
               }}
             />
             <Route
-             exact path="/"
+              exact
+              path="/"
               render={() => {
                 return <Main />;
               }}
