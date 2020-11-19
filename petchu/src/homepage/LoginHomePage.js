@@ -4,17 +4,18 @@ import axios from "axios";
 import MyPage from "./MyPage";
 import logo from "../images/logo.png";
 import MyPostList from "./MyPostList";
-import './button.css'
+import WriteNewPost from "./WriteNewPost";
+import "./button.css";
 
 axios.defaults.withCredentials = true;
 //수정
 class LoginHomePage extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      userPostInfo: "",
+      userPostInfo: null,
     };
+    this.handleUserPost = this.handleUserPost.bind(this);
   }
 
   handleSignOut = async () => {
@@ -26,11 +27,24 @@ class LoginHomePage extends React.Component {
       .catch((err) => console.error(err.statusText));
   };
 
+  handleUserPost = async () => {
+    await axios
+      .get("http://localhost:8001/post/writelist")
+      .then((res) => {
+        this.setState({ userPostInfo: res.data });
+        console.log("여기는 유저의 개인공간");
+        console.table(this.state.userPostInfo);
+      })
+      .catch((err) => console.error(err.statusText));
+  };
+
   render() {
+    // const data = this.state.userPostInfo;
+    // console.log("가시가시");
+    // console.table(data);
     return (
       <div>
         <header>
-
           <label>{this.props.userinfo.nickname}</label>
           <Link to="/">
             <button className="click">
@@ -48,14 +62,18 @@ class LoginHomePage extends React.Component {
           </Link>
 
           <Link to="/mypostlist">
-            <button className="click">My Post List</button>
+            <button className="click" onClick={this.handleUserPost}>
+              My Post List
+            </button>
           </Link>
 
           <Link to="/writenewpost">
             <button className="click"> WriteNewPost</button>
           </Link>
 
-          <button className="click" onClick={this.handleSignOut}>Log Out</button>
+          <button className="click" onClick={this.handleSignOut}>
+            Log Out
+          </button>
         </header>
         <hr />
         <main>
@@ -69,10 +87,22 @@ class LoginHomePage extends React.Component {
             <Route
               path="/mypostlist"
               render={() => {
-                <MyPostList
-                  userPostInfo={this.state.userPostInfo}
-                  id={this.props.id}
-                />;
+                const data = this.state.userPostInfo;
+                const list =
+                  data &&
+                  data.map((post) => <MyPostList post={post} key={post.id} />);
+                return (
+                  <div>
+                    <h1 style={{ margin: 20 }}>My Post List</h1>
+                    {list}
+                  </div>
+                );
+              }}
+            />
+            <Route
+              path="/writenewpost"
+              render={() => {
+                return <WriteNewPost />;
               }}
             />
           </Switch>

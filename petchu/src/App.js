@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import LoginHomePage from "./homepage/LoginHomePage";
 import LogOutHomePage from "./homepage/LogOutHomePage";
 import axios from "axios";
@@ -14,9 +14,7 @@ class App extends React.Component {
       isLogin: false,
       userinfo: null,
       totalPostinfo: null,
-      test: 0,
     };
-    this.handleMainpost = this.handleMainpost.bind(this);
   }
 
   componentDidMount() {
@@ -25,18 +23,16 @@ class App extends React.Component {
 
   async handleMainpost() {
     await axios.get("http://localhost:8001/post/writeall").then((res) => {
-      console.log(res.data);
       this.setState({ totalPostinfo: res.data });
+      console.log("여기는 모두의 게시물공간");
+      console.table(this.state.totalPostinfo);
       this.props.history.push("/");
     });
   }
   async handleResponseSuccess() {
     await axios.get("http://localhost:8001/user/userinfo").then((res) => {
-      console.log("res:", res);
-      console.log("res.data:", res.data);
       this.setState({ isLogin: true, userinfo: res.data });
       console.log(this.state.userinfo);
-      //this.props.history.push("/");
       this.handleMainpost();
     });
   }
