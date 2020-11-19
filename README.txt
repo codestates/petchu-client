@@ -1,2 +1,2 @@
-#Install
-        npm install         
+# H1, Install     
+```npm install```  
