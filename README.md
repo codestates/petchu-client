@@ -1,2 +1,6 @@
-# H1, Install     
+# Welcome to Petchu  🐈 🐕
+
+# Install     
 ```npm install```  
+
+
